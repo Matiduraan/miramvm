@@ -1,0 +1,3 @@
+C:/Users/siran/OneDrive/Facultad/2021/SO/MiRamMemoria(mio)/cmake-build-debug/CMakeFiles/MiRamMemoria_mio_.dir
+C:/Users/siran/OneDrive/Facultad/2021/SO/MiRamMemoria(mio)/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/siran/OneDrive/Facultad/2021/SO/MiRamMemoria(mio)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
