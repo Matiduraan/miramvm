@@ -4,9 +4,9 @@
 #include <stdlib.h>
 typedef struct
 {
-    int tamanio;
-    int nroSegmento;
     int *inicio;
+    int nroSegmento;
+    int tamanio;
 
 } segmentoEnTabla_t;
 typedef struct
@@ -20,26 +20,26 @@ int main()
 {
     void *memoria;
     memoria = malloc(1024);
-    printf("%d \n", memoria);
+    printf("puntero inicial memoria: %d \n", memoria);
 
     int a = 500;
     char b = 'b';
     segmentoEnTabla_t unSegmento;
     unSegmento.inicio = memoria;
-    unSegmento.nroSegmento = 5;
+    unSegmento.nroSegmento = 0;
     unSegmento.tamanio = 8;
+    segmentoEnTabla_t otroSegmento;
+    otroSegmento.inicio = (memoria + sizeof(unSegmento));
+    otroSegmento.nroSegmento = 1;
+    otroSegmento.tamanio = 16;
     *(segmentoEnTabla_t *)memoria = unSegmento;
-    /*listaSegmentos = list_create();
-    guardar_en_memoria(unSegmento);
-    printf("Guardado de memoria segmento nro: %d \n", *memoria);
-    printf("Memoria puntero %d \n", memoria);
-    *(int *)memoria = a;
-    printf("Valor memoria puntero %d \n", *(int *)memoria);
-    memoria += sizeof(int);
-    *(char *)memoria = b;
-    printf("Valor memoria puntero %c \n", *(char *)memoria);*/
-    printf("Valor memoria puntero %d \n", *(segmentoEnTabla_t *)(memoria + sizeof(int)));
+    *(segmentoEnTabla_t *)(memoria + sizeof(unSegmento)) = otroSegmento;
+    listaSegmentos = list_create();
+    list_add(listaSegmentos, memoria);
 
+    printf("Direccion inicial del segmento: %d, Numero de segmento: %d, Tamaño de segmento: %d  \n", *(segmentoEnTabla_t *)memoria, *(segmentoEnTabla_t *)(memoria + sizeof(int)), *(segmentoEnTabla_t *)(memoria + 2 * sizeof(int)));
+    printf("Direccion inicial del segmento: %d, Numero de segmento: %d, Tamaño de segmento: %d  \n", *(segmentoEnTabla_t *)(memoria + sizeof(unSegmento)), *(segmentoEnTabla_t *)(memoria + sizeof(unSegmento) + sizeof(int)), *(segmentoEnTabla_t *)(memoria + 2 * sizeof(unSegmento)));
+    printf("Primer elemento de la lista de segmentos : %d \n", list_get(listaSegmentos, 0));
     free(memoria);
     return 0;
 }
